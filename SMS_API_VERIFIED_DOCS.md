@@ -181,12 +181,12 @@ http://24x7sms.com/httpapi/sendapi?api_key={apikey}&sender_id={senderid}&mobile_
 - ✅ SmsConfig updated with user/password/channel fields
 - ✅ SmsProvider supports multiple parameter name variations
 - ⚠️ SMSEveryone requires different implementation (POST + JSON)
-- ⏳ Waiting for 24x7SMS API documentation
 
 ### Next Steps
-1. Get 24x7SMS API details from user
+1. Uploading other providers
 2. Consider creating separate REST provider for SMSEveryone
 3. Update application.yml with verified configurations
 4. Test each provider individually
+
 
 
