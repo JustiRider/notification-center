@@ -130,13 +130,34 @@ POST https://smseveryone.com/api/campaign
 
 ---
 
-## 4. 24x7SMS (PENDING ⏳)
+## 4. 24x7SMS (VERIFIED ✅)
 
-**Documentation:** Waiting for user to provide
+**Documentation:** http://24x7sms.com/
+
+**API Type:** HTTP GET
+
+**Send SMS Endpoint:**
+```
+http://24x7sms.com/httpapi/sendapi
+```
+
+**Required Parameters:**
+- `api_key` - API authentication key
+- `sender_id` - Sender ID (6 characters)
+- `mobile_no` - Recipient mobile number
+- `message` - SMS Content (URL Encoded)
+- `type` - Message type (text/unicode/flash)
+
+**Example URL:**
+```
+http://24x7sms.com/httpapi/sendapi?api_key={apikey}&sender_id={senderid}&mobile_no={number}&message={text}&type=text
+```
+
+**Response Format:** String/JSON
+- Success: `Returns Message ID`
+- Failure: `Returns Error Message`
 
 ---
-
-## Implementation Notes
 
 ### SMSGatewayHub
 - Uses GET method
