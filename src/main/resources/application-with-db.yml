@@ -1,0 +1,34 @@
+# Database-Enabled Profile - For Persistence and History Tracking
+
+spring:
+  profiles: with-db
+  
+  # Database Configuration
+  datasource:
+    url: jdbc:mysql://localhost:3306/notification_center?autoReconnect=true&useSSL=false&createDatabaseIfNotExist=true
+    username: root
+    password: your-password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  
+  # JPA Configuration
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+        dialect: org.hibernate.dialect.MySQL8Dialect
+  
+  # Session Configuration
+  session:
+    store-type: jdbc
+    jdbc:
+      initialize-schema: always
+    timeout: 3600
+
+notification:
+  database:
+    enabled: true
+  cache:
+    enabled: true  # Cache still enabled for performance

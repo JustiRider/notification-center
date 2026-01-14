@@ -1,0 +1,153 @@
+spring:
+  application:
+    name: notification-center
+  
+  # Profile Configuration
+  profiles:
+    active: cache-only
+  
+  # Server Configuration
+server:
+  port: 9090
+  servlet:
+    context-path: /notifications
+  # SSL Configuration - Disabled by default, can be enabled
+  ssl:
+    enabled: false
+    # Uncomment and configure below to enable SSL
+    # key-store: classpath:keystore.jks
+    # key-store-password: your-password
+    # key-store-type: JKS
+    # key-alias: your-alias
+
+# Jackson Configuration
+spring.jackson:
+  mapper:
+    accept-case-insensitive-enums: true
+
+# Notification Center Configuration
+notification:
+  # Database Configuration - Disabled by default
+  database:
+    enabled: false
+  
+  # Cache Configuration - Enabled by default
+  cache:
+    enabled: true
+    type: caffeine
+    caffeine:
+      spec: maximumSize=10000,expireAfterWrite=1h
+  
+  # Async Configuration
+  async:
+    core-pool-size: 5
+    max-pool-size: 15
+    queue-capacity: 30
+  
+  # Provider Configurations - All optional
+  rabbitmq:
+    enabled: false
+  socket:
+    enabled: false
+    host: 0.0.0.0
+    port: 3002
+  s3:
+    enabled: false
+    
+  # WhatsApp Cloud API Configuration
+  whatsapp:
+    enabled: true
+    api-version: v18.0
+    phone-number-id: your-phone-number-id
+    access-token: your-access-token
+    webhook-verify-token: your-verify-token
+    business-account-id: your-business-account-id
+
+  # SMS Provider Configuration
+  # Multiple provider examples below - uncomment and configure the one you want to use
+  sms:
+    enabled: true
+    
+    # Provider 1: MSG91 (default example)
+    # provider: MSG91
+    # url: https://api.msg91.com/api/sendhttp.php
+    # params: authkey={authkey}&mobiles={mobiles}&message={message}&sender={sender}&route={route}&DLT_TE_ID={dltTemplateId}
+    # auth-key: your-msg91-auth-key
+    # sender-id: SENDER
+    # dlt-entity-id: your-dlt-entity-id
+    # dlt-template-id: your-dlt-template-id
+    # route: 4  # 1=promotional, 4=transactional
+    # max-characters-per-sms: 160
+    
+    # Provider 2: 24x7SMS
+    # Uncomment below to use 24x7SMS
+    # provider: 24X7SMS
+    # url: https://smsapi.24x7sms.com/api_2.0/SendSMS.aspx
+    # params: APIKEY={authkey}&MobileNo={mobiles}&SenderID={sender}&Message={message}&ServiceName=TRANSACTIONAL
+    # auth-key: your-24x7sms-api-key
+    # sender-id: SENDER
+    # route: TRANSACTIONAL
+    # max-characters-per-sms: 160
+    
+    # Provider 3: SMSGatewayHub
+    # Using User/Password authentication as per user snippet
+    provider: SMSGATEWAYHUB
+    url: https://www.smsgatewayhub.com/api/mt/SendSms
+    params: User={user}&Password={password}&Senderid={senderid}&channel=2&DCS=0&flashsms=0&Number={number}&Text={text}&Route={route}
+    # auth-key: your-api-key (Not used with User/Password)
+    user: your-username
+    password: your-password
+    sender-id: SENDER
+    route: 1 
+    max-characters-per-sms: 160
+    
+    # Provider 4: SMSEveryone
+    # Uncomment below to use SMSEveryone  
+    # provider: SMSEVERYONE
+    # url: https://smseveryone.com/api/campaign
+    # params: api_key={authkey}&sender_id={sender}&destination={mobiles}&message={message}&type={route}
+    # auth-key: your-smseveryone-api-key
+    # sender-id: SENDER
+    # route: transactional
+    # max-characters-per-sms: 160
+    
+    # Provider 5: Twilio
+    # Uncomment below to use Twilio
+    # Note: Twilio uses HTTP Basic Auth with AccountSID and AuthToken
+    # provider: TWILIO
+    # url: https://api.twilio.com/2010-04-01/Accounts/{accountSid}/Messages.json
+    # params: From={sender}&To={mobiles}&Body={message}
+    # auth-key: your-twilio-auth-token
+    # client-id: your-twilio-account-sid  # AccountSID goes in client-id field
+    # sender-id: +1234567890  # Your Twilio phone number with country code
+    # max-characters-per-sms: 160
+  
+  # Email Provider Configuration
+  email:
+    enabled: true
+    host: smtp.gmail.com  # SMTP server host
+    port: 587             # SMTP port (587 for TLS, 465 for SSL)
+    username: your-email@example.com
+    password: your-email-password
+    protocol: smtp
+    from-email: no-reply@example.com
+    # SMTP Properties
+    auth-property-key: mail.smtp.auth
+    auth-property-value: true
+    ssl-enable-property-key: mail.smtp.starttls.enable
+    ssl-enable-property-value: true
+    ssl-trust-property-key: mail.smtp.ssl.trust
+    ssl-trust-property-value: '*'
+
+# Logging Configuration
+logging:
+  level:
+    root: INFO
+    com.shub.projects.notifications: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+
+# Internationalization
+spring.messages:
+  encoding: UTF-8
+  basename: i18n/ApplicationMessages

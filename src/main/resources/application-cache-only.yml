@@ -1,0 +1,17 @@
+# Cache-Only Profile - No Database Required
+# This is the default, lightweight mode for the notification center
+
+spring:
+  profiles: cache-only
+  
+notification:
+  database:
+    enabled: false
+  cache:
+    enabled: true
+
+# No JPA/Database configuration needed
+spring.autoconfigure:
+  exclude:
+    - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+    - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
