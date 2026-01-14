@@ -160,7 +160,7 @@ http://24x7sms.com/httpapi/sendapi?api_key={apikey}&sender_id={senderid}&mobile_
 ---
 
 ### SMSGatewayHub
-- Uses GET method
+- Uses POST method
 - Parameters in query string
 - APIKey for authentication
 - Requires channel parameter (different from route)
@@ -188,3 +188,4 @@ http://24x7sms.com/httpapi/sendapi?api_key={apikey}&sender_id={senderid}&mobile_
 2. Consider creating separate REST provider for SMSEveryone
 3. Update application.yml with verified configurations
 4. Test each provider individually
+
