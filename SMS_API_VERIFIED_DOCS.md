@@ -6,7 +6,7 @@ Based on official API documentation read on 2026-01-14
 
 **Documentation:** https://www.smsgatewayhub.com/https-api
 
-**API Type:** HTTP GET
+**API Type:** HTTP POST
 
 **Single SMS Endpoint:**
 ```
@@ -188,4 +188,5 @@ http://24x7sms.com/httpapi/sendapi?api_key={apikey}&sender_id={senderid}&mobile_
 2. Consider creating separate REST provider for SMSEveryone
 3. Update application.yml with verified configurations
 4. Test each provider individually
+
 
